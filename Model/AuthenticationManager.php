@@ -23,6 +23,7 @@ class AuthenticationManager extends AbstractPhpBBManager
      *
      * @param string $username The username.
      * @param string $password The user password.
+     * @return boolean True if login success
      */
     public function login($username, $password, $rememberMe = false)
     {
@@ -32,8 +33,10 @@ class AuthenticationManager extends AbstractPhpBBManager
 
         $user->session_begin();
         define('SUCCESSFUL_SF_LOGIN', true);
-        $auth->login($username, $password, $rememberMe);
+        $res = $auth->login($username, $password, $rememberMe);
         define('SUCCESSFUL_SF_LOGIN', false);
+
+        return (is_array($res) && $res['error_msg'] === false) ? true : false;
     }
 
     /**
