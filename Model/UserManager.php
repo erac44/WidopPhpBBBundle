@@ -70,6 +70,21 @@ class UserManager extends AbstractPhpBBManager
     }
 
     /**
+     * Updates the PhpBB user username
+     *
+     * @todo update the username of user table
+     *
+     * @param string $username    The username of the user to edit.
+     * @param string $newUsername The new username of the user
+     */
+    public function updateUserName($username, $newUsername)
+    {
+        $this->initPhpBB();
+
+        user_update_name($username, $newUsername);
+    }
+
+    /**
      * Removes a PhpBB user.
      *
      * @param string $username The user name.
